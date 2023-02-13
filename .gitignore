@@ -1,0 +1,5 @@
+# Created by pytest automatically. В этом файле прописываются те файлы, которые не нужно включать в git
+.pytest_cache/*
+
+
+
