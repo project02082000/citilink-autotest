@@ -1,9 +1,10 @@
 import time
-import allure
+
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
+from allure import step
 
 from base.base_class import Base
 
@@ -40,7 +41,7 @@ class LaptopsPage(Base):
     sorted_by_reviews = '//*[@id="__next"]/div/main/section/div[2]/div/div/section/div[2]/div[1]/div[2]/div[' \
                         '2]/div/button[4]'
 
-    laptop = '//*[@id="__next"]/div/main/section/div[2]/div/div/section/div[2]/div[2]/div[1]/div/div/div[2]/div[3]/a'
+    laptop = '//a[@class="app-catalog-fjtfe3 e1lhaibo0"][1]'
 
     # Getters
 
@@ -147,7 +148,7 @@ class LaptopsPage(Base):
         self.click_enter_max_price()
 
     def accept_cookies(self):
-        with allure.step("Accept cookies"):
+        with step("Accept cookies"):
             self.click_accept_cookies()
 
     def choose_good_reviews(self):
@@ -168,15 +169,15 @@ class LaptopsPage(Base):
         self.click_show_products()
 
     def sort_by_reviews(self):
-        with allure.step("Choose sorting by reviews"):
+        with step("Choose sorting by reviews"):
             self.click_sort_by_reviews()
 
     def choose_laptop(self):
-        with allure.step("Choose first laptop"):
+        with step("Choose first laptop"):
             self.get_laptop_url()
 
     def add_laptop_filters(self):
-        with allure.step("Add laptop's filters"):
+        with step("Add laptop's filters"):
             self.enter_price()
             self.choose_good_reviews()
             self.choose_processor()

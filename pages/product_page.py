@@ -2,18 +2,17 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.common import exceptions
-import allure
+from allure import step
 
 from base.base_class import Base
 
 
-class ChosenLaptopPage(Base):
+class ProductPage(Base):
+    laptop_name_product_page = None
+    laptop_price_product_page = None
 
     def __init__(self, driver):
         super().__init__(driver)
-
-    laptop_name_1 = None
-    laptop_price_1 = None
 
     # Locators
 
@@ -22,10 +21,10 @@ class ChosenLaptopPage(Base):
     go_to_cart_button = '//button[@data-label="Перейти в корзину"]'
     go_to_cart_button_0 = '//button[@class=\'e4uhfkv0 css-10je9jt e4mggex0\']'
     laptop_name = '//h1[@class="Heading Heading_level_1 ProductPageTitleSection__text"]'
-    laptop_name_0 = '//span[@class="e1ubbx7u0 e106ikdt0 app-catalog-1f1r2mz e1gjr6xo0"]'
+    laptop_name_0 = '//h1[@class="e1ubbx7u0 eml1k9j0 app-catalog-tn2wxd e1gjr6xo0"]'
     laptop_price = '//span[@class="ProductPagePriceSection__default-price_current-price ' \
                    'js--ProductPagePriceSection__default-price_current-price ' \
-                   'ProductPagePriceSection__default-price-value"]'
+                   'ProductPagePriceSection__default-price-value"][1]'
     laptop_price_0 = '//span[@class="e1j9birj0 e106ikdt0 app-catalog-1f8xctp e1gjr6xo0"]'
 
     # Getters
@@ -49,11 +48,16 @@ class ChosenLaptopPage(Base):
         return self.driver.find_element(By.XPATH, self.laptop_name_0)
 
     def get_laptop_price(self):
-        price = self.driver.find_elements(By.XPATH, self.laptop_price)
-        return price[1]
+        return self.driver.find_elements(By.XPATH, self.laptop_price)
 
     def get_laptop_price_0(self):
         return self.driver.find_element(By.XPATH, self.laptop_price_0)
+
+    def get_product_name_value(self):
+        return self.laptop_name_product_page
+
+    def get_product_price_value(self):
+        return self.laptop_price_product_page
 
     # Actions
 
@@ -70,34 +74,26 @@ class ChosenLaptopPage(Base):
         self.get_go_to_cart_button_0().click()
 
     def save_laptop_name(self):
-        self.laptop_name_1 = self.get_laptop_name().text
-        print("laptop_name_1:", self.laptop_name_1)
-
-    def save_laptop_name_0(self):
-        self.laptop_name_1 = self.get_laptop_name_0().text
-        print("laptop_name_1:", self.laptop_name_1)
+        try:
+            self.laptop_name_product_page = self.get_laptop_name_0().text
+        except exceptions.NoSuchElementException:
+            self.laptop_name_product_page = self.get_laptop_name().text
 
     def save_laptop_price(self):
-        self.laptop_price_1 = self.get_laptop_price().text
-        self.laptop_price_1 = int(self.laptop_price_1.replace(" ", ""))
-        print("laptop_price_1:", self.laptop_price_1)
-
-    def save_laptop_price_0(self):
-        self.laptop_price_1 = self.get_laptop_price_0().text
-        self.laptop_price_1 = int(self.laptop_price_1.replace(" ", ""))
-        print("laptop_price_1:", self.laptop_price_1)
+        try:
+            self.laptop_price_product_page = self.get_laptop_price_0().text
+            self.laptop_price_product_page = int(self.laptop_price_product_page.replace(" ", ""))
+        except exceptions.NoSuchElementException:
+            self.laptop_price_product_page = self.get_laptop_price().text
+            self.laptop_price_product_page = int(self.laptop_price_product_page.replace(" ", ""))
 
     # Methods
 
     def add_and_go_to_cart(self):
-        with allure.step("Add product and go to cart"):
+        with step("Add product and go to cart"):
             try:
-                self.save_laptop_name()
-                self.save_laptop_price()
-                self.add_to_cart_click()
-                self.go_to_cart_click()
-            except exceptions.NoSuchElementException:
-                self.save_laptop_name_0()
-                self.save_laptop_price_0()
                 self.add_to_cart_click_0()
                 self.go_to_cart_click_0()
+            except exceptions.NoSuchElementException:
+                self.add_to_cart_click()
+                self.go_to_cart_click()

@@ -1,18 +1,18 @@
-import allure
-from base.base_class import Base
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from allure import step
+
+from base.base_class import Base
 
 
 class CheckoutPage(Base):
+    laptop_name_checkout = None
+    laptop_price_checkout = None
+    sum_price = None
 
     def __init__(self, driver):
         super().__init__(driver)
-
-    laptop_name_3 = None
-    laptop_price_3 = None
-    sum_price = None
 
     # Locators
 
@@ -52,6 +52,15 @@ class CheckoutPage(Base):
     def get_laptop_price(self):
         return self.driver.find_element(By.XPATH, self.laptop_price)
 
+    def get_product_name_value(self):
+        return self.laptop_name_checkout
+
+    def get_product_price_value(self):
+        return self.laptop_price_checkout
+
+    def get_sum_price_value(self):
+        return self.sum_price
+
     # Actions
 
     def input_first_name(self):
@@ -70,28 +79,22 @@ class CheckoutPage(Base):
         self.get_pickup_point().click()
 
     def save_laptop_name(self):
-        self.laptop_name_3 = self.get_laptop_name().text
-        print("laptop_name_3:", self.laptop_name_3)
+        self.laptop_name_checkout = self.get_laptop_name().text
 
     def save_laptop_price(self):
-        self.laptop_price_3 = self.get_laptop_price().text
-        self.laptop_price_3 = int(self.laptop_price_3.replace(" ", ""))
-        print("laptop_price_3:", self.laptop_price_3)
+        self.laptop_price_checkout = self.get_laptop_price().text
+        self.laptop_price_checkout = int(self.laptop_price_checkout.replace(" ", ""))
 
     def save_sum_price(self):
         self.sum_price = self.get_sum_price().text
         self.sum_price = int(self.sum_price.replace(" ", ""))
-        print("sum_price:", self.sum_price)
 
     # Methods
 
     def input_personal_info(self):
-        with allure.step("Input personal info"):
+        with step("Input personal info"):
             self.input_first_name()
             self.input_last_name()
             self.input_phone()
             self.input_additional_phone()
-            self.save_laptop_name()
-            self.save_laptop_price()
-            self.save_sum_price()
             self.click_pickup_point()
