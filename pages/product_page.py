@@ -42,16 +42,16 @@ class ProductPage(Base):
         return WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, self.go_to_cart_button_0)))
 
     def get_laptop_name(self):
-        return self.driver.find_element(By.XPATH, self.laptop_name)
+        return WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, self.laptop_name)))
 
     def get_laptop_name_0(self):
-        return self.driver.find_element(By.XPATH, self.laptop_name_0)
+        return WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, self.laptop_name_0)))
 
     def get_laptop_price(self):
-        return self.driver.find_elements(By.XPATH, self.laptop_price)
+        return WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, self.laptop_price)))
 
     def get_laptop_price_0(self):
-        return self.driver.find_element(By.XPATH, self.laptop_price_0)
+        return WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, self.laptop_price_0)))
 
     def get_product_name_value(self):
         return self.laptop_name_product_page

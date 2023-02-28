@@ -37,7 +37,7 @@ def test_price_when_additional_service_added(set_up):
     cart_page.choose_additional_service()
     cart_page.save_additional_service_price()
     print("additional_service_price:", cart_page.get_additional_price_value())
-    time.sleep(1)
+    time.sleep(3)
     cart_page.save_sum_price()
     print("total_cost:", cart_page.get_sum_price_value())
 

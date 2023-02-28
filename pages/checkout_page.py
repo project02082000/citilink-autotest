@@ -47,10 +47,10 @@ class CheckoutPage(Base):
         return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.sum_price_locator)))
 
     def get_laptop_name(self):
-        return self.driver.find_element(By.XPATH, self.laptop_name)
+        return WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, self.laptop_name)))
 
     def get_laptop_price(self):
-        return self.driver.find_element(By.XPATH, self.laptop_price)
+        return WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, self.laptop_price)))
 
     def get_product_name_value(self):
         return self.laptop_name_checkout
