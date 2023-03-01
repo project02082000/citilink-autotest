@@ -39,7 +39,7 @@ def test_price_when_multiple_copies_of_product_added(set_up):
 
     product_price = cart_page.laptop_price_cart
     cart_page.set_amount_of_product(randint(2, 10))
-    time.sleep(3)
+    time.sleep(5)
 
     cart_page.save_amount_of_product()
     print("amount_of_product:", cart_page.get_amount_product_value())

@@ -22,9 +22,9 @@ class CheckoutPage(Base):
     additional_phone = '//input[@name="additionalPhone"]'
     pickup_point = '//div[@class="TooltipCheckout"]'
     sum_price_locator = '//span[@class="e1j9birj0 e106ikdt0 css-1nj39i9 e1gjr6xo0"]'
-    laptop_name = '//*[@id="app-check-out"]/div/div/div/div[2]/div/div[1]/div/div/div/div/div[3]/div/div/div/div/div[' \
-                  '1]/div/span[1]'
-    laptop_price = '//*[@id="app-check-out"]/div/div/div/div[2]/div/div[2]/div/div/span/span/span[1]'
+    laptop_name = '//div[@class="CheckoutLayout__aside"]//span[@class="e1wd4glt0 e106ikdt0 ' \
+                  'css-otysme-StyledProductItemTitle e1gjr6xo0"]'
+    laptop_price = '//div[@class="CheckoutLayout__aside"]//span[@class="e1j9birj0 e106ikdt0 css-1b0ueat e1gjr6xo0"]'
 
     # Getters
 

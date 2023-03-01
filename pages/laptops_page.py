@@ -15,13 +15,11 @@ class LaptopsPage(Base):
 
     # Locators
 
-    min_price = '//*[@id="__next"]/div/main/section/div[2]/div/div/section/div[1]/div/div/div[2]/div[2]/div/div[' \
-                '3]/div[2]/div[2]/input[1]'
+    min_price = '//div[@data-meta-name="FilterListGroupsLayout"]//input[@name="input-min"]'
 
-    max_price = '//*[@id="__next"]/div/main/section/div[2]/div/div/section/div[1]/div/div/div[2]/div[2]/div/div[' \
-                '3]/div[2]/div[2]/input[2]'
+    max_price = '//div[@data-meta-name="FilterListGroupsLayout"]//input[@name="input-max"]'
 
-    accept_cookie = '//*[@id="__next"]/div/div[5]/div[1]/div/button/span'
+    accept_cookie = '//button[@class="e4uhfkv0 css-1jfe691 e4mggex0"]'
 
     reviews_button = '//div[@data-meta-value="4,5 и выше"]'
 
@@ -35,11 +33,9 @@ class LaptopsPage(Base):
 
     ram_size = '//div[@data-meta-value=\'16 ГБ\']'
 
-    show_products_button = '//*[@id="__next"]/div/main/section/div[2]/div/div/section/div[1]/div/div/div[2]/div[' \
-                           '2]/div[2]/div'
+    show_products_button = '//div[@class="app-catalog-v4lp2l eetttp30"]'
 
-    sorted_by_reviews = '//*[@id="__next"]/div/main/section/div[2]/div/div/section/div[2]/div[1]/div[2]/div[' \
-                        '2]/div/button[4]'
+    sorted_by_reviews = '//button[@class="app-catalog-ud4v0n esgsbwb0"][2]'
 
     laptop = '//a[@class="app-catalog-fjtfe3 e1lhaibo0"][1]'
 
