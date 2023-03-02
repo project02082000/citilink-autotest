@@ -153,7 +153,6 @@ class LaptopsPage(Base):
     def choose_processor(self):
         self.click_processor_1()
         self.click_processor_2()
-        self.click_processor_3()
 
     def choose_screen_size(self):
         self.click_screen_size()
