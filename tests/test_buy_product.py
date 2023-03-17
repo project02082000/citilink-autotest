@@ -3,6 +3,7 @@ import re
 import os
 
 from selenium import webdriver
+from selenium.common import exceptions
 from selenium.webdriver.chrome.service import Service
 from allure import description, step, severity, severity_level
 from assertpy import assert_that
@@ -62,8 +63,12 @@ def test_buy_product(set_up):
     cart_page.go_to_checkout()
 
     checkout_page = CheckoutPage(driver)
-    checkout_page.save_laptop_name()
-    checkout_page.save_laptop_price()
+    try:
+        checkout_page.save_laptop_name()
+        checkout_page.save_laptop_price()
+    except exceptions.TimeoutException:
+        checkout_page.save_laptop_name_2()
+        checkout_page.save_laptop_price_2()
     print("laptop_name_checkout:", checkout_page.get_product_name_value())
     print("laptop_price_checkout:", checkout_page.get_product_price_value(), "\n")
 
@@ -85,7 +90,10 @@ def test_buy_product(set_up):
     shop_choice_page = ShopChoicePage(driver)
     shop_choice_page.choose_shop()
 
-    checkout_page.save_sum_price()
+    try:
+        checkout_page.save_sum_price()
+    except exceptions.TimeoutException:
+        checkout_page.save_sum_price_2()
     print("sum_price", checkout_page.get_sum_price_value(), "\n")
 
     with step("Check that final price on Checkout Page matches price on Product Page"):
