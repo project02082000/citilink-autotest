@@ -86,6 +86,7 @@ def test_buy_product(set_up):
             .is_equal_to(product_page.laptop_price_product_page)
 
     checkout_page.input_personal_info()
+    time.sleep(3)
 
     shop_choice_page = ShopChoicePage(driver)
     shop_choice_page.choose_shop()

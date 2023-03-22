@@ -29,7 +29,7 @@ class LaptopsPage(Base):
 
     processor_3 = '//div[@data-meta-value=\'Ryzen 7\']'
 
-    screen_size = '//div[@data-meta-value=\'15.6 "\']'
+    screen_size = '//div[@data-meta-value=\'15 "\']'
 
     ram_size = '//div[@data-meta-value=\'16 ГБ\']'
 
@@ -175,7 +175,11 @@ class LaptopsPage(Base):
         with step("Add laptop's filters"):
             self.enter_price()
             self.choose_good_reviews()
-            self.choose_processor()
-            self.choose_screen_size()
+            time.sleep(1)
             self.choose_ram_size()
+            time.sleep(1)
+            self.choose_screen_size()
+            time.sleep(1)
+            self.choose_processor()
+            time.sleep(1)
             self.show_products()
